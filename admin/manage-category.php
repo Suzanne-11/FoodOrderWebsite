@@ -11,6 +11,14 @@
                         echo $_SESSION['add'];
                         unset($_SESSION['add']);
                     }
+                    if(isset($_SESSION['remove'])){
+                        echo $_SESSION['remove'];
+                        unset($_SESSION['remove']);
+                    }
+                    if(isset($_SESSION['delete'])){
+                        echo $_SESSION['delete'];
+                        unset($_SESSION['delete']);
+                    }
                 ?>
                 <br><br>
                 <!-- Btn for add category -->
@@ -73,7 +81,7 @@
                                     <td><?php echo $active; ?></td>
                                     <td>
                                         <a href="#" class="btn-secondary">Update Category</a>
-                                        <a href="#" class="btn-danger">Delete Category</a>
+                                        <a href="<?php echo SITEURL; ?>admin/delete-category.php?id=<?php echo $id; ?>&image_name=<?php echo $img_name; ?>" class="btn-danger">Delete Category</a> <!-- passing id using get method -->
                                     </td>
                                 </tr>
                                 
