@@ -98,26 +98,30 @@
                     //to upload img, we need img_name, src path and destination path
                     $image_name = $_FILES['image']['name'];
 
-                    //Auto renaming our img
-                    //get the extension of our img (jpg,png,gif,etc)  Eg.Desserts.jpg
+                    //upload img only if img is selected
+                    if($image_name != ""){
 
-                    $ext = end(explode('.', $image_name));         //jpg
+                        //Auto renaming our img
+                        //get the extension of our img (jpg,png,gif,etc)  Eg.Desserts.jpg
 
-                    //rename the img
-                    $image_name = 'Food_Category_'.rand(000,999).'.'.$ext;   //Food_Category_699.jpg
-                    $source_path = $_FILES['image']['tmp_name'];
-                    $destination_path = "../images/category/".$image_name; 
-                    //upload the img
-                    $upload = move_uploaded_file($source_path,$destination_path);
+                        $ext = end(explode('.', $image_name));         //jpg
 
-                    //check whether the img is uploaded or not , if img is not uploaded, then we will stop the process and redirect with error msg
-                    if($upload == false){
-                        //set msg
-                        $_SESSION['upload'] = "<div class='error'>Failed to upload the image</div>";
-                        //redirect to add-category pg
-                        header('location:'.SITEURL.'admin/add-category.php');
-                        //stop the process
-                        die();//if img isnt uploaded, we dont want its info in the db
+                        //rename the img
+                        $image_name = 'Food_Category_'.rand(000,999).'.'.$ext;   //Food_Category_699.jpg
+                        $source_path = $_FILES['image']['tmp_name'];
+                        $destination_path = "../images/category/".$image_name; 
+                        //upload the img
+                        $upload = move_uploaded_file($source_path,$destination_path);
+
+                        //check whether the img is uploaded or not , if img is not uploaded, then we will stop the process and redirect with error msg
+                        if($upload == false){
+                            //set msg
+                            $_SESSION['upload'] = "<div class='error'>Failed to upload the image</div>";
+                            //redirect to add-category pg
+                            header('location:'.SITEURL.'admin/add-category.php');
+                            //stop the process
+                            die();//if img isnt uploaded, we dont want its info in the db
+                        }
                     }
                 }
                 else{
